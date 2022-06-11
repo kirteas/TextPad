@@ -28,7 +28,7 @@
                 <MenuItem Header="Выход"/>
             </MenuItem>
             <MenuItem Header="Правка" Height="25" FontFamily="Segoe UI Symbol" Padding="5,0" HorizontalContentAlignment="Center" Background="White">
-                <MenuItem Header="Отмена"/>
+                <MenuItem Header="Отмена"/><!--обьясняй все кнопки )-->
                 <MenuItem Header="Повтор"/>
                 <Separator/>
                 <MenuItem Header="Вырезать"/>
