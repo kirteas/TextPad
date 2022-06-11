@@ -1,0 +1,15 @@
+z:\ALL\Education\#Академия ШАГ\Домашние задания\Курсовой проект .NET\TextPad\TextPad\TextPad\bin\Debug\TextPad.exe.config
+z:\ALL\Education\#Академия ШАГ\Домашние задания\Курсовой проект .NET\TextPad\TextPad\TextPad\bin\Debug\TextPad.exe
+z:\ALL\Education\#Академия ШАГ\Домашние задания\Курсовой проект .NET\TextPad\TextPad\TextPad\bin\Debug\TextPad.pdb
+z:\ALL\Education\#Академия ШАГ\Домашние задания\Курсовой проект .NET\TextPad\TextPad\TextPad\obj\Debug\TextPad.csproj.AssemblyReference.cache
+z:\ALL\Education\#Академия ШАГ\Домашние задания\Курсовой проект .NET\TextPad\TextPad\TextPad\obj\Debug\MainForm.g.cs
+z:\ALL\Education\#Академия ШАГ\Домашние задания\Курсовой проект .NET\TextPad\TextPad\TextPad\obj\Debug\App.g.cs
+z:\ALL\Education\#Академия ШАГ\Домашние задания\Курсовой проект .NET\TextPad\TextPad\TextPad\obj\Debug\TextPad_MarkupCompile.cache
+z:\ALL\Education\#Академия ШАГ\Домашние задания\Курсовой проект .NET\TextPad\TextPad\TextPad\obj\Debug\TextPad_MarkupCompile.lref
+z:\ALL\Education\#Академия ШАГ\Домашние задания\Курсовой проект .NET\TextPad\TextPad\TextPad\obj\Debug\MainForm.baml
+z:\ALL\Education\#Академия ШАГ\Домашние задания\Курсовой проект .NET\TextPad\TextPad\TextPad\obj\Debug\TextPad.g.resources
+z:\ALL\Education\#Академия ШАГ\Домашние задания\Курсовой проект .NET\TextPad\TextPad\TextPad\obj\Debug\TextPad.Properties.Resources.resources
+z:\ALL\Education\#Академия ШАГ\Домашние задания\Курсовой проект .NET\TextPad\TextPad\TextPad\obj\Debug\TextPad.csproj.GenerateResource.cache
+z:\ALL\Education\#Академия ШАГ\Домашние задания\Курсовой проект .NET\TextPad\TextPad\TextPad\obj\Debug\TextPad.csproj.CoreCompileInputs.cache
+z:\ALL\Education\#Академия ШАГ\Домашние задания\Курсовой проект .NET\TextPad\TextPad\TextPad\obj\Debug\TextPad.exe
+z:\ALL\Education\#Академия ШАГ\Домашние задания\Курсовой проект .NET\TextPad\TextPad\TextPad\obj\Debug\TextPad.pdb
