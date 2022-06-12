@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:TextPad"
         mc:Ignorable="d"
         Title="TextPad+" Height="450" Width="800" Icon="TextPad.ico" FontFamily="Segoe UI Symbol">
-    <Grid ShowGridLines="True">
+    <!-- Grid - сетка для разметки и выравнивания всех элементов верхнего уровня (нельзя трогать) -->
+    <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
@@ -16,38 +17,93 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
+        <!-- Menu - верхняя панель со списком кнопок. "Файл, Правка, Поиск, Вид, Кодировка". В дальнейшем можно что-то убрать, что-то добавить.
+        Предлагаю пока реализовать простые задачи, а по истечению времени и запаса, если останется, то добавлять новое. -->
         <Menu Grid.Row="0" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch">
+            <!-- 1. список "Файл" -->
             <MenuItem Header="Файл" Height="25" FontFamily="Segoe UI Symbol" Padding="5,0" HorizontalContentAlignment="Center" Background="White">
-                <MenuItem Header="Новый"/>
-                <MenuItem Header="Открыть..."/>
-                <MenuItem Header="Сохранить"/>
-                <MenuItem Header="Сохранить как..."/>
-                <MenuItem Header="Закрыть"/>
-                <MenuItem Header="Закрыть всё"/>
+                <!-- 1.1 список "Файл" > кнопка "Новый"
+                должна открывать новый файл в новой вкладке TabMenu.
+                Для этого необходимо реализовать объект для хранения, который будет создаваться каждый раз новый при открытии файла или создании нового.
+                Далее сделать 'ObservableCollection' для хранения этих объектов. -->
+                <MenuItem Header="Новый" x:Name="BTN_NewFile"/>
+                <!-- 1.2 список "Файл" > кнопка "Открыть"
+                должна работать аналогичным способом, как кнопка "Новый", но не создавать пустой документ, а
+                открывать указанный текстовый файл. Добавлять его в новый объект. А объект должен добавляться в список 'ObservableCollection' -->
+                <MenuItem Header="Открыть..." x:Name="BTN_OpenFile"/>
+                <!-- 1.3 список "Файл" > кнопка "Сохранить" = сохранять открытый файл (новый либо существующий) без указания, где и куда. -->
+                <MenuItem Header="Сохранить" x:Name="BTN_SaveFile"/>
+                <!-- 1.4 список "Файл" > кнопка "Сохранить как..."
+                открывает новое диалоговое окно и просит указать место сохранения файла. -->
+                <MenuItem Header="Сохранить как..." x:Name="BTN_SaveFileAs"/>
+                <!-- 1.5 список "Файл" > кнопка "Закрыть"
+                закрывает открытую вкладку. Перед закрытием необходимо проверить, был ли файл изменён ранее или нет.
+                Далее предлагать сохранить, если файл был изменён. -->
+                <MenuItem Header="Закрыть" x:Name="BTN_CloseFile"/>
+                <!-- 1.6 список "Файл" > кнопка "Закрыть всё"
+                аналогично кнопке "Закрыть", только закрывает все открытые вкладки, преждевременно проверяя их
+                на изменение. Если были изменения, предлагает сохранить. -->
+                <MenuItem Header="Закрыть всё" x:Name="BTN_CloseAllFiles"/>
                 <Separator/>
-                <MenuItem Header="Выход"/>
+                <!-- 1.7 список "Файл" > кнопка "Выход"
+                закрывает программу. Вначале необходимо закрывать все вкладки, преждевременно проверяя их на изменение, если были изменения, то предлагать сохранить.
+                Как только будут закрыты все вкладки, закрываем программу (убиваем процесс) -->
+                <MenuItem Header="Выход" x:Name="BTN_ExitProgramm"/>
             </MenuItem>
+            <!-- 2. список "Правка" -->
             <MenuItem Header="Правка" Height="25" FontFamily="Segoe UI Symbol" Padding="5,0" HorizontalContentAlignment="Center" Background="White">
-                <MenuItem Header="Отмена"/>
-                <MenuItem Header="Повтор"/>
+                <!-- 2.1 список "Правка" > кнопка "Отмена"
+                Отменяет последнее действие (изменения). Тут надо подумать, как реализовать. Есть нюансы. -->
+                <MenuItem Header="Отмена" x:Name="BTN_Undo"/>
+                <!-- 2.2 список "Правка" > кнопка "Повтор"
+                Повториет действие, которое было отменено. Для "Отмены" и "Повтора" действий можно запоминать последние 10 действий. Думаю достаточно. -->
+                <MenuItem Header="Повтор" x:Name="BTN_Retry"/>
                 <Separator/>
-                <MenuItem Header="Вырезать"/>
-                <MenuItem Header="Копировать"/>
-                <MenuItem Header="Вставить"/>
-                <MenuItem Header="Удалить"/>
-                <MenuItem Header="Выделить всё"/>
+                <!-- 2.3 список "Правка" > кнопка "Вырезать" 
+                Вырезать в буфер обмена. -->
+                <MenuItem Header="Вырезать" x:Name="BTN_Cut"/>
+                <!-- 2.4 список "Правка" > кнопка "Копировать" 
+                Копировать в буфер обмена. -->
+                <MenuItem Header="Копировать" x:Name="BTN_Copy"/>
+                <!-- 2.5 список "Правка" > кнопка "Вставить" 
+                Вставить из буфера обмена. -->
+                <MenuItem Header="Вставить" x:Name="BTN_Paste"/>
+                <!-- 2.6 список "Правка" > кнопка "Удалить" 
+                Удалить выделенный фрагмент текста. -->
+                <MenuItem Header="Удалить" x:Name="BTN_Delete"/>
+                <!-- 2.7 список "Правка" > кнопка "Выделить всё" 
+                Выделить весь текст документа. -->
+                <MenuItem Header="Выделить всё" x:Name="BTN_AllSelect"/>
             </MenuItem>
+            <!-- 3. список "Поиск" -->
             <MenuItem Header="Поиск" Height="25" FontFamily="Segoe UI Symbol" Padding="5,0" HorizontalContentAlignment="Center" Background="White">
-                <MenuItem Header="Найти..."/>
-                <MenuItem Header="Замена..."/>
+                <!-- 3.1 список "Поиск" > кнопка "Найти..."
+                Создаём новое окно, где будет разработан отдельно описк по потоку (тексту).
+                В новом окне будут опции для настройки поиска. -->
+                <MenuItem Header="Найти..." x:Name="BTN_Search"/>
+                <!-- 3.2  список "Поиск" > кнопка "Замена..."
+                Аналогично кнопки "Поиск" будет осуществлять поиск одного фрагмента и замена на другой фрагмент. -->
+                <MenuItem Header="Замена..." x:Name="BTN_Replacement"/>
                 <Separator/>
-                <MenuItem Header="Пометить все совпадения"/>
-                <MenuItem Header="Очистить все совпадения"/>
+                <!-- 3.3  список "Поиск" > кнопка "Пометить все совпадения" 
+                Помечать выделенный фрагмент во всём тексте, если аналогичный есть ещё. -->
+                <MenuItem Header="Пометить все совпадения" x:Name="BTN_MarkAllOverlap"/>
+                <!-- 3.4  список "Поиск" > кнопка "Очистить все совпадения" 
+                Очищает выделенные фрагмент во всём тексте, если такие были ранее. -->
+                <MenuItem Header="Очистить все совпадения" x:Name="BTN_ClearAllOverlap"/>
                 <Separator/>
-                <MenuItem Header="Установить закладку"/>
-                <MenuItem Header="К следующей закладке"/>
-                <MenuItem Header="К предыдущей закладке"/>
-                <MenuItem Header="Убрать закладку"/>
+                <!-- 3.5  список "Поиск" > кнопка "Установить закладку" 
+                Устанавливает флажок на строке, в случаи чего, можно к ней переместиться всегда. -->
+                <MenuItem Header="Установить закладку" x:Name="BTN_SetupBookmark"/>
+                <!-- 3.6  список "Поиск" > кнопка "К следующей закладке" 
+                Перемещается к установленной закладке по порядку (сверху вниз). -->
+                <MenuItem Header="К следующей закладке" x:Name="BTN_NextBookmark"/>
+                <!-- 3.7  список "Поиск" > кнопка "К предыдущей закладке" 
+                Перемещается к установленной закладке по порядку (снизу вверх). -->
+                <MenuItem Header="К предыдущей закладке" x:Name="BTN_PreviousBookmark"/>
+                <!-- 3.8  список "Поиск" > кнопка "Убрать закладку" 
+                Удаляет закладку, на строке которой установлен указатель. -->
+                <MenuItem Header="Убрать закладку" x:Name="BTN_DeleteBookmark"/>
             </MenuItem>
             <MenuItem Header="Вид" Height="25" FontFamily="Segoe UI Symbol" Padding="5,0" HorizontalContentAlignment="Center" Background="White">
                 
@@ -56,18 +112,23 @@
             <MenuItem Header="?" Height="25" FontFamily="Segoe UI Symbol" Padding="5,0" HorizontalContentAlignment="Center" Background="White"/>
         </Menu>
         <WrapPanel Margin="0" Grid.Row="2" Background="#FFEBEBEB"/>
+        <!-- StatusBar - панель для отображения информации (количество символов в тексте, кодировка и т.д.). -->
         <StatusBar Margin="0" Grid.Row="3" Background="White"/>
+        <!-- TabControl - сами вкладки с открытыми документами. -->
         <TabControl Margin="0" Grid.Row="2">
             <TabItem Header="Новый файл" Margin="-2,-2,-2,0">
-                <Grid Background="#FFDAEBF9" ShowGridLines="True">
+                <Grid Background="#FFDAEBF9" ShowGridLines="False">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="3"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="3"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBox Grid.Column="1" Margin="0" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" AcceptsTab="True"/>
+                    <TextBox x:Name="TB_Window" Grid.Column="3" Margin="0" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" AcceptsTab="True"/>
+                    <TextBlock x:Name="TB_StringNumber" Grid.Column="1" Margin="0" TextWrapping="Wrap" Padding="0" FlowDirection="RightToLeft"/>
+
                 </Grid>
             </TabItem>
         </TabControl>
-        
     </Grid>
 </Window>
