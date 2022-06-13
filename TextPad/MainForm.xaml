@@ -126,7 +126,6 @@
                     </Grid.ColumnDefinitions>
                     <TextBox x:Name="TB_Window" Grid.Column="3" Margin="0" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" AcceptsTab="True"/>
                     <TextBlock x:Name="TB_StringNumber" Grid.Column="1" Margin="0" TextWrapping="Wrap" Padding="0" FlowDirection="RightToLeft"/>
-
                 </Grid>
             </TabItem>
         </TabControl>
