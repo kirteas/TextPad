@@ -19,6 +19,9 @@ namespace TextPad
     /// </summary>
     public partial class MainForm : Window
     {
+        // Создание объекта класса ViewModel для реализации не жёсткой связанности (паттерн MVVM);
+        ViewModel vm = new ViewModel();
+
         public MainForm()
         {
             InitializeComponent();
