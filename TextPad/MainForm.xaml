@@ -8,20 +8,25 @@
         Title="TextPad+" Height="450" Width="800" Icon="TextPad.ico" FontFamily="Segoe UI Symbol" Loaded="Window_Loaded">
     <!-- Шаблон данных для окна коллекции файлов -->
     <Window.Resources>
-        <DataTemplate x:Key="listDocuments">
+        
+        <DataTemplate x:Key="ListDocumentsTemplate">
             <TabItem Header="{Binding Path=Title}" Margin="-2,-2,-2,0">
-                <Grid Background="#FFDAEBF9" ShowGridLines="False">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3"/>
-                        <ColumnDefinition Width="30"/>
-                        <ColumnDefinition Width="3"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox x:Name="TB_Window" Text="{Binding Path=stringCode, Mode=OneTime}" Grid.Column="3" Margin="0" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" AcceptsTab="True" IsEnabled="True"/>
-                    <TextBlock x:Name="TB_StringNumber" Grid.Column="1" Margin="0" TextWrapping="Wrap" Padding="0" FlowDirection="RightToLeft"/>
-                </Grid>
             </TabItem>
         </DataTemplate>
+
+        <DataTemplate x:Key="TabDocumentTemplate">
+            <Grid Background="#FFDAEBF9" ShowGridLines="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="TB_Window" Text="{Binding Path=stringCode, Mode=OneTime}" Grid.Column="3" Margin="0" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" AcceptsTab="True" IsEnabled="True"/>
+                <TextBlock x:Name="TB_StringNumber" Grid.Column="1" Margin="0" TextWrapping="Wrap" Padding="0" FlowDirection="RightToLeft"/>
+            </Grid>
+        </DataTemplate>
+        
     </Window.Resources>
     <!-- Grid - сетка для разметки и выравнивания всех элементов верхнего уровня (нельзя трогать) -->
     <Grid ShowGridLines="False">
@@ -132,6 +137,7 @@
         <!-- StatusBar - панель для отображения информации (количество символов в тексте, кодировка и т.д.). -->
         <StatusBar Margin="0" Grid.Row="3" Background="White"/>
         <!-- TabControl - сами вкладки с открытыми документами. -->
-        <TabControl x:Name="TC_WindowDocument" Margin="0" Grid.Row="2" ItemTemplate="{DynamicResource listDocuments}"/>
+        <TabControl x:Name="TC_WindowDocument" Margin="0" Grid.Row="2" ItemTemplate="{StaticResource ListDocumentsTemplate}" ContentTemplate="{StaticResource TabDocumentTemplate}">
+        </TabControl>
     </Grid>
 </Window>
