@@ -5,7 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TextPad"
         mc:Ignorable="d"
-        Title="TextPad+" Height="450" Width="800" Icon="TextPad.ico" FontFamily="Segoe UI Symbol">
+        Title="TextPad+" Height="450" Width="800" Icon="TextPad.ico" FontFamily="Segoe UI Symbol" Loaded="Window_Loaded">
+    <!-- Шаблон данных для окна коллекции файлов -->
+    <Window.Resources>
+        <DataTemplate x:Key="listDocuments">
+            <TabItem Header="{Binding Path=Title}" Margin="-2,-2,-2,0">
+                <Grid Background="#FFDAEBF9" ShowGridLines="False">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="3"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="TB_Window" Text="{Binding Path=stringCode, Mode=OneTime}" Grid.Column="3" Margin="0" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" AcceptsTab="True" IsEnabled="True"/>
+                    <TextBlock x:Name="TB_StringNumber" Grid.Column="1" Margin="0" TextWrapping="Wrap" Padding="0" FlowDirection="RightToLeft"/>
+                </Grid>
+            </TabItem>
+        </DataTemplate>
+    </Window.Resources>
     <!-- Grid - сетка для разметки и выравнивания всех элементов верхнего уровня (нельзя трогать) -->
     <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
@@ -26,11 +43,11 @@
                 должна открывать новый файл в новой вкладке TabMenu.
                 Для этого необходимо реализовать объект для хранения, который будет создаваться каждый раз новый при открытии файла или создании нового.
                 Далее сделать 'ObservableCollection' для хранения этих объектов. -->
-                <MenuItem Header="Новый" x:Name="BTN_NewFile"/>
+                <MenuItem Header="Новый" x:Name="BTN_NewFile" Click="BTN_NewFile_Click" />
                 <!-- 1.2 список "Файл" > кнопка "Открыть"
                 должна работать аналогичным способом, как кнопка "Новый", но не создавать пустой документ, а
                 открывать указанный текстовый файл. Добавлять его в новый объект. А объект должен добавляться в список 'ObservableCollection' -->
-                <MenuItem Header="Открыть..." x:Name="BTN_OpenFile"/>
+                <MenuItem Header="Открыть..." x:Name="BTN_OpenFile" Click="BTN_OpenFile_Click"/>
                 <!-- 1.3 список "Файл" > кнопка "Сохранить" = сохранять открытый файл (новый либо существующий) без указания, где и куда. -->
                 <MenuItem Header="Сохранить" x:Name="BTN_SaveFile"/>
                 <!-- 1.4 список "Файл" > кнопка "Сохранить как..."
@@ -115,19 +132,6 @@
         <!-- StatusBar - панель для отображения информации (количество символов в тексте, кодировка и т.д.). -->
         <StatusBar Margin="0" Grid.Row="3" Background="White"/>
         <!-- TabControl - сами вкладки с открытыми документами. -->
-        <TabControl Margin="0" Grid.Row="2">
-            <TabItem Header="Новый файл" Margin="-2,-2,-2,0">
-                <Grid Background="#FFDAEBF9" ShowGridLines="False">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3"/>
-                        <ColumnDefinition Width="30"/>
-                        <ColumnDefinition Width="3"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox x:Name="TB_Window" Grid.Column="3" Margin="0" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" AcceptsTab="True"/>
-                    <TextBlock x:Name="TB_StringNumber" Grid.Column="1" Margin="0" TextWrapping="Wrap" Padding="0" FlowDirection="RightToLeft"/>
-                </Grid>
-            </TabItem>
-        </TabControl>
+        <TabControl x:Name="TC_WindowDocument" Margin="0" Grid.Row="2" ItemTemplate="{DynamicResource listDocuments}"/>
     </Grid>
 </Window>

@@ -13,3 +13,4 @@ z:\ALL\Education\#Академия ШАГ\Домашние задания\Кур
 z:\ALL\Education\#Академия ШАГ\Домашние задания\Курсовой проект .NET\TextPad\TextPad\TextPad\obj\Debug\TextPad.csproj.CoreCompileInputs.cache
 z:\ALL\Education\#Академия ШАГ\Домашние задания\Курсовой проект .NET\TextPad\TextPad\TextPad\obj\Debug\TextPad.exe
 z:\ALL\Education\#Академия ШАГ\Домашние задания\Курсовой проект .NET\TextPad\TextPad\TextPad\obj\Debug\TextPad.pdb
+Z:\ALL\Education\#Академия ШАГ\Домашние задания\Курсовой проект .NET\TextPad\TextPad\TextPad\obj\Debug\TextPad.csproj.SuggestedBindingRedirects.cache

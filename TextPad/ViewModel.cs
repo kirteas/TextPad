@@ -10,14 +10,26 @@ namespace TextPad
 {
     class ViewModel
     {
+        //**********************************************************************
+        // Поля:
+        //**********************************************************************
         // Коллекция хранения открытых файлов для привязки к форме;
         private ObservableCollection<File.Document> Elements;
+        private NewStream newstream = new NewStream();
+        private OpenStream openstream = new OpenStream();
 
         // Конструктор, для инициализации списка;
         public ViewModel()
         {
             Elements = new ObservableCollection<File.Document>();
         }
+
+        // Геттер для доступа к коллекции файлов;
+        public ObservableCollection<File.Document> GetDocumentCollection
+        {
+            get { return Elements; }
+        }
+
         /* Закрытый для реализации Абстрактный класс;
         * Нельзя создать экземпляр класса, необходим для содержания Интерфейсов;
         * Использовать для создания объектов на основе вложенного класса 'Document' для хранения открытых файлов;
@@ -30,17 +42,24 @@ namespace TextPad
             // Класс, на основе которого будут создаваться открытые документы;
             public class Document
             {
+                private string title;
                 private byte[] byteCode;
                 private string stringCode;
                 private string typeEncoding;
                 private string path;
                 public Document()
                 {
-                    stringCode = null;
+                    title = "Новый файл";
+                    stringCode = "";
                     typeEncoding = null;
-                    path = null;
+                    path = "";
                 }
                 // Аксессоры (мутаторы) для доступа и работы с переменными;
+                public string Title
+                {
+                    get { return title; }
+                    set { title = value; }
+                }
                 public byte[] ByteCode
                 {
                     get { return byteCode; }
@@ -105,5 +124,18 @@ namespace TextPad
                 void CloseAll(ref ObservableCollection<Document> Elements);
             }
         }
+
+        //**********************************************************************
+        // Методы для взаимодействия с классами:
+        //**********************************************************************
+        public void CreateNewDocument()
+        {
+            newstream.New(ref Elements);
+        }
+        public void OpenNewDocument()
+        {
+            openstream.Open(ref Elements);
+        }
+
     }
 }

@@ -26,5 +26,20 @@ namespace TextPad
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            TC_WindowDocument.ItemsSource = vm.GetDocumentCollection;
+        }
+
+        private void BTN_NewFile_Click(object sender, RoutedEventArgs e)
+        {
+            vm.CreateNewDocument();
+        }
+
+        private void BTN_OpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            vm.OpenNewDocument();
+        }
     }
 }
