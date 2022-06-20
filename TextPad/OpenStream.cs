@@ -17,38 +17,35 @@ namespace TextPad
     * Открыть необходимо хотя бы *.txt-файлы. */
     internal class OpenStream : ViewModel.File.IOpenStream
     {
-        string title = "";
-        private string getPatch(ref string title)
+        public void Open(ref ObservableCollection<Document> Elements)
         {
-            var dilog = new OpenFileDialog();
+            // Создание нового объекта файла;
+            ViewModel.File.Document document = new Document();
+            // Открытие файла;
+            var dialog = new OpenFileDialog();
 
-            if (dilog.ShowDialog() == true)
+            if (dialog.ShowDialog() == true)
             {
-
-                title = dilog.FileName;
-                return title;
+                document.Path = dialog.FileName; // Сохраняем путь к файлу;
+                document.Title = dialog.SafeFileName; // Сохраняем только имя файла;
+                using (StreamReader reader = new StreamReader(document.Path))
+                {
+                    if (File.Exists(document.Path))
+                    {
+                        string temp = null;
+                        while (reader.EndOfStream != true)
+                        {
+                            temp += reader.ReadLine();
+                        }
+                        document.StringCode = temp;
+                        Elements.Add(document);
+                    }
+                }
             }
             else
             {
-                return null;
+                return;
             }
-        }
-        public void Open(ref ObservableCollection<Document> Elements)
-        {
-            ViewModel.File.Document document = new Document();
-            string str_Main_pad = "";
-            getPatch(ref title);
-            document.Title = title;
-            StreamReader sr = new StreamReader(title);
-            if (File.Exists(title))//условия для записи
-            {
-
-                str_Main_pad = sr.ReadToEnd();//почему то не работает запись хз почем
-                document.StringCode = str_Main_pad;
-                sr.Close();
-                Elements.Add(document);
-            }
-
         }
     }
 }
