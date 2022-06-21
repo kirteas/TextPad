@@ -33,12 +33,13 @@ namespace TextPad
                     if (File.Exists(document.Path))
                     {
                         string temp = null;
-                        while (reader.EndOfStream != true)
+                        while (!reader.EndOfStream)
                         {
                             temp += reader.ReadLine();
                         }
                         document.StringCode = temp;
                         Elements.Add(document);
+                        
                     }
                 }
             }

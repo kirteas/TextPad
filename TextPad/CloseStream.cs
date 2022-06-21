@@ -4,6 +4,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Forms;
+
 using static TextPad.ViewModel.File;
 
 namespace TextPad
@@ -18,11 +21,31 @@ namespace TextPad
     {
         public void Close(ref ObservableCollection<Document> Elements)
         {
+            ViewModel.File.Document document = new Document();
+            TabControl TC_WindowDocument = new TabControl();
+            
+             for (int i = 0; i < document.CountTab; i++)
+            {
+                
+                if (System.Windows.Forms.MessageBox.Show("Would you like to Close this Tab?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                       TC_WindowDocument.TabPages.RemoveAt(i);
+                        break;
+                    }
+               
+            }
+
+
 
         }
         public void CloseAll(ref ObservableCollection<Document> Elements)
         {
-
+            TabControl TC_WindowDocument = new TabControl();
+            for (int i = 0; i < TC_WindowDocument.TabCount; i++)
+                if (i != TC_WindowDocument.SelectedIndex)
+                { 
+                    TC_WindowDocument.TabPages.RemoveAt(i--); 
+                }
         }
     }
 }

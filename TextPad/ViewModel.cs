@@ -17,7 +17,8 @@ namespace TextPad
         private ObservableCollection<File.Document> Elements;
         private NewStream newstream = new NewStream();
         private OpenStream openstream = new OpenStream();
-
+        private CloseStream closeStream = new CloseStream();
+        
         // Конструктор, для инициализации списка;
         public ViewModel()
         {
@@ -36,6 +37,7 @@ namespace TextPad
         * Использовать для реализации вложенных Интерфейсов; */
         abstract public class File
         {
+            MainForm main = new MainForm();
             // Закрытый конструктор для запрета создания экземпляра класса;
             private File() { }
 
@@ -47,14 +49,21 @@ namespace TextPad
                 private string stringCode;
                 private string typeEncoding;
                 private string path;
+                private int count_tabe;
                 public Document()
                 {
                     title = "Новый файл";
                     stringCode = "";
                     typeEncoding = null;
                     path = "";
+                    count_tabe = 0;
                 }
                 // Аксессоры (мутаторы) для доступа и работы с переменными;
+                public int CountTab
+                {
+                    get { return count_tabe; }
+                    set { count_tabe = value;}
+                }
                 public string Title
                 {
                     get { return title; }
@@ -135,6 +144,10 @@ namespace TextPad
         public void OpenNewDocument()
         {
             openstream.Open(ref Elements);
+        }
+        public void ClosedFileNow()
+        {
+            closeStream.Close(ref Elements);
         }
 
     }

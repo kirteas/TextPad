@@ -41,5 +41,9 @@ namespace TextPad
         {
             vm.OpenNewDocument();
         }
+        private void BTN_CloseFile_Clic(object sender, RoutedEventArgs e)
+        {
+            vm.ClosedFileNow();
+        }
     }
 }

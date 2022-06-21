@@ -14,3 +14,18 @@ z:\ALL\Education\#Академия ШАГ\Домашние задания\Кур
 z:\ALL\Education\#Академия ШАГ\Домашние задания\Курсовой проект .NET\TextPad\TextPad\TextPad\obj\Debug\TextPad.exe
 z:\ALL\Education\#Академия ШАГ\Домашние задания\Курсовой проект .NET\TextPad\TextPad\TextPad\obj\Debug\TextPad.pdb
 Z:\ALL\Education\#Академия ШАГ\Домашние задания\Курсовой проект .NET\TextPad\TextPad\TextPad\obj\Debug\TextPad.csproj.SuggestedBindingRedirects.cache
+C:\Users\timur\Desktop\Программа для эксперементов\TextPad\TextPad\bin\Debug\TextPad.exe.config
+C:\Users\timur\Desktop\Программа для эксперементов\TextPad\TextPad\bin\Debug\TextPad.exe
+C:\Users\timur\Desktop\Программа для эксперементов\TextPad\TextPad\bin\Debug\TextPad.pdb
+C:\Users\timur\Desktop\Программа для эксперементов\TextPad\TextPad\obj\Debug\TextPad.csproj.AssemblyReference.cache
+C:\Users\timur\Desktop\Программа для эксперементов\TextPad\TextPad\obj\Debug\MainForm.g.cs
+C:\Users\timur\Desktop\Программа для эксперементов\TextPad\TextPad\obj\Debug\App.g.cs
+C:\Users\timur\Desktop\Программа для эксперементов\TextPad\TextPad\obj\Debug\TextPad_MarkupCompile.cache
+C:\Users\timur\Desktop\Программа для эксперементов\TextPad\TextPad\obj\Debug\TextPad_MarkupCompile.lref
+C:\Users\timur\Desktop\Программа для эксперементов\TextPad\TextPad\obj\Debug\MainForm.baml
+C:\Users\timur\Desktop\Программа для эксперементов\TextPad\TextPad\obj\Debug\TextPad.g.resources
+C:\Users\timur\Desktop\Программа для эксперементов\TextPad\TextPad\obj\Debug\TextPad.Properties.Resources.resources
+C:\Users\timur\Desktop\Программа для эксперементов\TextPad\TextPad\obj\Debug\TextPad.csproj.GenerateResource.cache
+C:\Users\timur\Desktop\Программа для эксперементов\TextPad\TextPad\obj\Debug\TextPad.csproj.CoreCompileInputs.cache
+C:\Users\timur\Desktop\Программа для эксперементов\TextPad\TextPad\obj\Debug\TextPad.exe
+C:\Users\timur\Desktop\Программа для эксперементов\TextPad\TextPad\obj\Debug\TextPad.pdb

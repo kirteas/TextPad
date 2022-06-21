@@ -43,7 +43,7 @@
         Предлагаю пока реализовать простые задачи, а по истечению времени и запаса, если останется, то добавлять новое. -->
         <Menu Grid.Row="0" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch">
             <!-- 1. список "Файл" -->
-            <MenuItem Header="Файл" Height="25" FontFamily="Segoe UI Symbol" Padding="5,0" HorizontalContentAlignment="Center" Background="White">
+            <MenuItem Header="Файл" Height="25" FontFamily="Segoe UI Symbol" Padding="5,0" HorizontalContentAlignment="Center" Background="White" >
                 <!-- 1.1 список "Файл" > кнопка "Новый"
                 должна открывать новый файл в новой вкладке TabMenu.
                 Для этого необходимо реализовать объект для хранения, который будет создаваться каждый раз новый при открытии файла или создании нового.
@@ -61,7 +61,7 @@
                 <!-- 1.5 список "Файл" > кнопка "Закрыть"
                 закрывает открытую вкладку. Перед закрытием необходимо проверить, был ли файл изменён ранее или нет.
                 Далее предлагать сохранить, если файл был изменён. -->
-                <MenuItem Header="Закрыть" x:Name="BTN_CloseFile"/>
+                <MenuItem Header="Закрыть" x:Name="BTN_CloseFile" Click="BTN_CloseFile_Clic" />
                 <!-- 1.6 список "Файл" > кнопка "Закрыть всё"
                 аналогично кнопке "Закрыть", только закрывает все открытые вкладки, преждевременно проверяя их
                 на изменение. Если были изменения, предлагает сохранить. -->
