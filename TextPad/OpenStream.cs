@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static TextPad.ViewModel.File;
 
 namespace TextPad
 {
@@ -15,12 +14,12 @@ namespace TextPad
     * и добавляет в список (коллекцию) 'Elements'. 
     * Данный объект является открывающимся файлом с компьютера в программе. 
     * Открыть необходимо хотя бы *.txt-файлы. */
-    internal class OpenStream : ViewModel.File.IOpenStream
+    internal class OpenStream : IOpenStream
     {
-        public void Open(ref ObservableCollection<Document> Elements)
+        public bool Open(out Document newDocument)
         {
             // Создание нового объекта файла;
-            ViewModel.File.Document document = new Document();
+            Document document = new Document();
             // Открытие файла;
             var dialog = new OpenFileDialog();
 
@@ -38,14 +37,17 @@ namespace TextPad
                             temp += reader.ReadLine();
                         }
                         document.StringCode = temp;
-                        Elements.Add(document);
+                        //Elements.Add(document);
+                        newDocument = document;
+                        return true;
                     }
                 }
             }
             else
             {
-                return;
             }
+            newDocument = null;
+            return false;
         }
     }
 }

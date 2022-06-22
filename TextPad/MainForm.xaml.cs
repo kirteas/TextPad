@@ -19,27 +19,27 @@ namespace TextPad
     /// </summary>
     public partial class MainForm : Window
     {
-        // Создание объекта класса ViewModel для реализации не жёсткой связанности (паттерн MVVM);
-        ViewModel vm = new ViewModel();
+        //// Создание объекта класса ViewModel для реализации не жёсткой связанности (паттерн MVVM);
+        //ViewModel vm = new ViewModel();
 
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            TC_WindowDocument.ItemsSource = vm.GetDocumentCollection;
-        }
+        //private void Window_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    TC_WindowDocument.ItemsSource = vm.GetDocumentCollection;
+        //}
 
-        private void BTN_NewFile_Click(object sender, RoutedEventArgs e)
-        {
-            vm.CreateNewDocument();
-        }
+        //private void BTN_NewFile_Click(object sender, RoutedEventArgs e)
+        //{
+        //    vm.CreateNewDocument();
+        //}
 
-        private void BTN_OpenFile_Click(object sender, RoutedEventArgs e)
-        {
-            vm.OpenNewDocument();
-        }
+        //private void BTN_OpenFile_Click(object sender, RoutedEventArgs e)
+        //{
+        //    vm.OpenNewDocument();
+        //}
     }
 }

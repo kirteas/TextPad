@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static TextPad.ViewModel.File;
+﻿using System.Collections.ObjectModel;
 
 namespace TextPad
 {
@@ -14,7 +8,7 @@ namespace TextPad
     * далее указать путь в открывшемся окне. 
     * P.S. после сохранения любым из двух методов поле 'Path' объекта 'Document' должно перезаписаться на новый
     * путь, во избежании дальнейших багов. */
-    internal class SaveStream : ViewModel.File.ISaveStream
+    internal class SaveStream : ISaveStream
     {
         // Метод "сохранить" - сохраняет по старому пути, ранее открывшейся файл;
         public void Save(ref ObservableCollection<Document> Elements)

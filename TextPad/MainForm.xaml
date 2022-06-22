@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TextPad"
         mc:Ignorable="d"
-        Title="TextPad+" Height="450" Width="800" Icon="TextPad.ico" FontFamily="Segoe UI Symbol" Loaded="Window_Loaded">
+        Title="TextPad+" Height="450" Width="800" Icon="TextPad.ico" FontFamily="Segoe UI Symbol"
+        DataContext="{DynamicResource vm}">
     <!-- Шаблон данных для окна коллекции файлов -->
     <Window.Resources>
-        
+        <local:ViewModel x:Key="vm"/>
         <DataTemplate x:Key="ListDocumentsTemplate">
-            <TabItem Header="{Binding Path=Title}" Margin="-2,-2,-2,0">
-            </TabItem>
+            <TextBlock Text="{Binding Path=Title}" Margin="-2,-2,-2,0"/>
         </DataTemplate>
 
         <DataTemplate x:Key="TabDocumentTemplate">
@@ -26,7 +26,7 @@
                 <TextBlock x:Name="TB_StringNumber" Grid.Column="1" Margin="0" TextWrapping="Wrap" Padding="0" FlowDirection="RightToLeft"/>
             </Grid>
         </DataTemplate>
-        
+
     </Window.Resources>
     <!-- Grid - сетка для разметки и выравнивания всех элементов верхнего уровня (нельзя трогать) -->
     <Grid ShowGridLines="False">
@@ -48,11 +48,13 @@
                 должна открывать новый файл в новой вкладке TabMenu.
                 Для этого необходимо реализовать объект для хранения, который будет создаваться каждый раз новый при открытии файла или создании нового.
                 Далее сделать 'ObservableCollection' для хранения этих объектов. -->
-                <MenuItem Header="Новый" x:Name="BTN_NewFile" Click="BTN_NewFile_Click" />
+                <!--<MenuItem Header="Новый" x:Name="BTN_NewFile" Click="BTN_NewFile_Click" />-->
+                <MenuItem Header="Новый" x:Name="BTN_NewFile" Command="{Binding CreateNewDocumentCommand}" />
                 <!-- 1.2 список "Файл" > кнопка "Открыть"
                 должна работать аналогичным способом, как кнопка "Новый", но не создавать пустой документ, а
                 открывать указанный текстовый файл. Добавлять его в новый объект. А объект должен добавляться в список 'ObservableCollection' -->
-                <MenuItem Header="Открыть..." x:Name="BTN_OpenFile" Click="BTN_OpenFile_Click"/>
+                <!--<MenuItem Header="Открыть..." x:Name="BTN_OpenFile" Click="BTN_OpenFile_Click"/>-->
+                <MenuItem Header="Открыть..." x:Name="BTN_OpenFile" Command="{Binding OpenNewDocumentCommand}"/>
                 <!-- 1.3 список "Файл" > кнопка "Сохранить" = сохранять открытый файл (новый либо существующий) без указания, где и куда. -->
                 <MenuItem Header="Сохранить" x:Name="BTN_SaveFile"/>
                 <!-- 1.4 список "Файл" > кнопка "Сохранить как..."
@@ -128,7 +130,7 @@
                 <MenuItem Header="Убрать закладку" x:Name="BTN_DeleteBookmark"/>
             </MenuItem>
             <MenuItem Header="Вид" Height="25" FontFamily="Segoe UI Symbol" Padding="5,0" HorizontalContentAlignment="Center" Background="White">
-                
+
             </MenuItem>
             <MenuItem Header="Кодировки" Height="25" FontFamily="Segoe UI Symbol" Padding="5,0" HorizontalContentAlignment="Center" Background="White"/>
             <MenuItem Header="?" Height="25" FontFamily="Segoe UI Symbol" Padding="5,0" HorizontalContentAlignment="Center" Background="White"/>
@@ -137,7 +139,12 @@
         <!-- StatusBar - панель для отображения информации (количество символов в тексте, кодировка и т.д.). -->
         <StatusBar Margin="0" Grid.Row="3" Background="White"/>
         <!-- TabControl - сами вкладки с открытыми документами. -->
-        <TabControl x:Name="TC_WindowDocument" Margin="0" Grid.Row="2" ItemTemplate="{StaticResource ListDocumentsTemplate}" ContentTemplate="{StaticResource TabDocumentTemplate}">
-        </TabControl>
+        <!--<TabControl x:Name="TC_WindowDocument" Margin="0" Grid.Row="2" ItemTemplate="{StaticResource ListDocumentsTemplate}" ContentTemplate="{StaticResource TabDocumentTemplate}">
+        </TabControl>-->
+        <TabControl Grid.Row="2"
+                    ItemTemplate="{StaticResource ListDocumentsTemplate}"
+                    ContentTemplate="{StaticResource TabDocumentTemplate}"
+                    ItemsSource="{Binding Elements}"/>
+
     </Grid>
 </Window>

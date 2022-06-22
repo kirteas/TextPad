@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static TextPad.ViewModel.File;
+﻿using System.Collections.ObjectModel;
 
 namespace TextPad
 {
@@ -14,7 +8,7 @@ namespace TextPad
     * Данный метод уже реализован в классе 'Document'.
     * Данная проверка нужна, если файл был изменён, то программа должна запросить у пользователя "сохранить его перед закрытием или нет?". 
     * Для запроса можно вопсользовать созданием дополнительного окна 'MessageBox'. */
-    internal class CloseStream : ViewModel.File.ICloseStream
+    internal class CloseStream :ICloseStream
     {
         public void Close(ref ObservableCollection<Document> Elements)
         {
