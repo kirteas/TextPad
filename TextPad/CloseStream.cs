@@ -26,10 +26,13 @@ namespace TextPad
             
              for (int i = 0; i < document.CountTab; i++)
             {
-                
-                if (System.Windows.Forms.MessageBox.Show("Would you like to Close this Tab?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                bool fileExist = Convert.ToBoolean( document.Path);
+                if (System.Windows.Forms.MessageBox.Show("Вы хотите закрыть эту вкладку?", "Потвердить", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                       TC_WindowDocument.TabPages.RemoveAt(i);
+                    if (fileExist==true)
+                       { TC_WindowDocument.TabPages.RemoveAt(i);
+                        Elements.RemoveAt(i); 
+                       }
                         break;
                     }
                

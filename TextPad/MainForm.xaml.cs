@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static TextPad.ViewModel.File;
 
 namespace TextPad
 {
@@ -43,6 +45,8 @@ namespace TextPad
         }
         private void BTN_CloseFile_Clic(object sender, RoutedEventArgs e)
         {
+            ViewModel.File.Document document = new ViewModel.File.Document();
+            document.CountTab = TC_WindowDocument.Items.Count;
             vm.ClosedFileNow();
         }
     }
