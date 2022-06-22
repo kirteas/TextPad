@@ -45,9 +45,7 @@ namespace TextPad
         }
         private void BTN_CloseFile_Clic(object sender, RoutedEventArgs e)
         {
-            ViewModel.File.Document document = new ViewModel.File.Document();
-            document.CountTab = TC_WindowDocument.Items.Count;
-            vm.ClosedFileNow();
+            vm.ClosedFileNow(  TC_WindowDocument.SelectedIndex);
         }
     }
 }

@@ -37,7 +37,7 @@ namespace TextPad
         * Использовать для реализации вложенных Интерфейсов; */
         abstract public class File
         {
-            MainForm main = new MainForm();
+            
             // Закрытый конструктор для запрета создания экземпляра класса;
             private File() { }
 
@@ -57,12 +57,13 @@ namespace TextPad
                     typeEncoding = null;
                     path = "";
                     count_tabe = 0;
-                }
+            }
                 // Аксессоры (мутаторы) для доступа и работы с переменными;
+              
                 public int CountTab
                 {
                     get { return count_tabe; }
-                    set { count_tabe = value;}
+                    set { count_tabe = value; }
                 }
                 public string Title
                 {
@@ -129,7 +130,7 @@ namespace TextPad
             }
             public interface ICloseStream
             {
-                void Close(ref ObservableCollection<Document> Elements);
+                void Close(ref ObservableCollection<Document> Elements, object arg);
                 void CloseAll(ref ObservableCollection<Document> Elements);
             }
         }
@@ -137,6 +138,7 @@ namespace TextPad
         //**********************************************************************
         // Методы для взаимодействия с классами:
         //**********************************************************************
+     
         public void CreateNewDocument()
         {
             newstream.New(ref Elements);
@@ -145,9 +147,9 @@ namespace TextPad
         {
             openstream.Open(ref Elements);
         }
-        public void ClosedFileNow()
+        public void ClosedFileNow(int closingIndex)
         {
-            closeStream.Close(ref Elements);
+            closeStream.Close(ref Elements, closingIndex);
         }
 
     }

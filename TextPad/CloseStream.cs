@@ -19,36 +19,41 @@ namespace TextPad
     * Для запроса можно вопсользовать созданием дополнительного окна 'MessageBox'. */
     internal class CloseStream : ViewModel.File.ICloseStream
     {
-        public void Close(ref ObservableCollection<Document> Elements)
+
+        public void Close(ref ObservableCollection<Document> Elements, object arg)
         {
             ViewModel.File.Document document = new Document();
             TabControl TC_WindowDocument = new TabControl();
-            
-             for (int i = 0; i < document.CountTab; i++)
-            {
-                bool fileExist = Convert.ToBoolean( document.Path);
+            int closingIndex = (int)arg;
+
+             
+               
                 if (System.Windows.Forms.MessageBox.Show("Вы хотите закрыть эту вкладку?", "Потвердить", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                    if (fileExist==true)
-                       { TC_WindowDocument.TabPages.RemoveAt(i);
-                        Elements.RemoveAt(i); 
-                       }
-                        break;
+                    
+     
+                        Elements.RemoveAt(closingIndex);
+                      
                     }
                
-            }
+           
 
 
 
         }
         public void CloseAll(ref ObservableCollection<Document> Elements)
         {
-            TabControl TC_WindowDocument = new TabControl();
-            for (int i = 0; i < TC_WindowDocument.TabCount; i++)
-                if (i != TC_WindowDocument.SelectedIndex)
-                { 
-                    TC_WindowDocument.TabPages.RemoveAt(i--); 
-                }
+            if (System.Windows.Forms.MessageBox.Show("Вы хотите закрыть эту вкладку?", "Потвердить", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                int count = Elements.Count;
+                for (int i = 0; i < count; i++)
+                {
+
+                    Elements.RemoveAt(0);
+                    break;
+                }  
+
+            }
         }
     }
 }
