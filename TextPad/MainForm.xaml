@@ -63,7 +63,8 @@
                 <!-- 1.5 список "Файл" > кнопка "Закрыть"
                 закрывает открытую вкладку. Перед закрытием необходимо проверить, был ли файл изменён ранее или нет.
                 Далее предлагать сохранить, если файл был изменён. -->
-                <MenuItem Header="Закрыть" x:Name="BTN_CloseFile"/>
+                <MenuItem Header="Закрыть" Command="{Binding CloseDocumentCommand}" CommandParameter="{Binding SelectedItem, ElementName=tab}"/>
+                <MenuItem Header="Удалить" Command="{Binding RemoveDocumentCommand}" CommandParameter="{Binding SelectedItem, ElementName=tab}"/>
                 <!-- 1.6 список "Файл" > кнопка "Закрыть всё"
                 аналогично кнопке "Закрыть", только закрывает все открытые вкладки, преждевременно проверяя их
                 на изменение. Если были изменения, предлагает сохранить. -->
@@ -139,12 +140,11 @@
         <!-- StatusBar - панель для отображения информации (количество символов в тексте, кодировка и т.д.). -->
         <StatusBar Margin="0" Grid.Row="3" Background="White"/>
         <!-- TabControl - сами вкладки с открытыми документами. -->
-        <!--<TabControl x:Name="TC_WindowDocument" Margin="0" Grid.Row="2" ItemTemplate="{StaticResource ListDocumentsTemplate}" ContentTemplate="{StaticResource TabDocumentTemplate}">
-        </TabControl>-->
-        <TabControl Grid.Row="2"
+        <TabControl x:Name="tab" Grid.Row="2"
                     ItemTemplate="{StaticResource ListDocumentsTemplate}"
                     ContentTemplate="{StaticResource TabDocumentTemplate}"
-                    ItemsSource="{Binding Elements}"/>
+                    ItemsSource="{Binding Elements}"
+                    SelectedItem="{Binding SelectedDocument}"/>
 
     </Grid>
 </Window>

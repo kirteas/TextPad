@@ -10,19 +10,25 @@ namespace TextPad
         //**********************************************************************
         // Коллекция хранения открытых файлов для привязки к форме;
         public ObservableCollection<Document> Elements { get; } = new ObservableCollection<Document>();
+
+        private Document _selectedDocument;
+        public Document SelectedDocument { get => _selectedDocument; set =>Set(ref _selectedDocument, value); }
+
         private readonly NewStream newstream = new NewStream();
         private readonly OpenStream openstream = new OpenStream();
 
         // Конструктор, для инициализации списка;
         public ViewModel()
         {
-            //Elements = new ObservableCollection<Document>();
 
             // Инициализация команд делегатами методов которые они должны исполнять.
             CreateNewDocumentCommand = new RelayCommand(CreateNewDocument);
             OpenNewDocumentCommand = new RelayCommand(OpenNewDocument);
 
-            if(IsInDesignMode)
+            CloseDocumentCommand = new RelayCommand<Document>(CloseDocument);
+            RemoveDocumentCommand = new RelayCommand<Document>(RemoveDocument);
+
+            if (IsInDesignMode)
             {
                 // Здесь нужно создать несколько Document
                 // чтобы удобнее работать в конструкторе
@@ -31,27 +37,11 @@ namespace TextPad
             }
         }
 
-        //// Геттер для доступа к коллекции файлов;
-        //public ObservableCollection<Document> GetDocumentCollection
-        //{
-        //    get { return Elements; }
-        //}
-
-        /* Закрытый для реализации Абстрактный класс;
-        * Нельзя создать экземпляр класса, необходим для содержания Интерфейсов;
-        * Использовать для создания объектов на основе вложенного класса 'Document' для хранения открытых файлов;
-        * Использовать для реализации вложенных Интерфейсов; */
-
-        //**********************************************************************
-        // Методы для взаимодействия с классами:
-        // Не надо в методы передавать внутренние элементы ViewModel.
-        // Надо получать из них ланные и обрабатывать их в ViewModel так как ей нужно.
-        //**********************************************************************
-        public void CreateNewDocument()
+        private  void CreateNewDocument()
         {
-           Elements.Add(newstream.New());
+            Elements.Add(newstream.New());
         }
-        public void OpenNewDocument()
+        private void OpenNewDocument()
         {
             if (openstream.Open(out Document document))
                 Elements.Add(document);
@@ -62,5 +52,18 @@ namespace TextPad
         //**********************************************************************
         public RelayCommand CreateNewDocumentCommand { get; }
         public RelayCommand OpenNewDocumentCommand { get; }
+
+        public RelayCommand CloseDocumentCommand { get; }
+        public RelayCommand RemoveDocumentCommand { get; }
+        private void CloseDocument(Document document)
+        {
+            // Закрываем document
+        }
+        private void RemoveDocument(Document document)
+        {
+            // Удаляем document
+        }
+
+
     }
 }
